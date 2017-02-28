@@ -1,0 +1,19 @@
+.player1{
+    background-color: #3399ff;
+}
+
+.player2{
+    background-color:  #009900;
+}
+
+
+.gamecell{
+    width:8px;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+.gametable{
+    width:50px;
+}

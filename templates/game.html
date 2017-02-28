@@ -1,0 +1,81 @@
+{% extends "skeleton.html" %}
+{% load widget_tweaks %}
+{% load static from staticfiles %}
+
+
+{% block title %}Connect4. Game List{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <h1 class="col-lg-6 col-lg-offset-3 text-center">Game List</h1>
+
+            <div class="clearfix"></div>
+            <br>
+            <form method="POST" action="/connect4/games/">
+                <input class="btn col-xs-4 col-xs-offset-4" type="submit" value="Create Game">
+                <input type="hidden" name="_method" value="PUT">
+                {% csrf_token %}
+            </form>
+                    <div class="clearfix"></div>
+
+        <br>
+
+           <div class="list-group col-xs-4">
+                  <h3 class="text-center">Active Games</h3>
+                  <ul >
+                      {% for avaliable_game in avaliable_games %}
+                          <li class="list-group-item">{{ avaliable_game}}
+                          <form action="/connect4/play/" method="POST">
+                              {% csrf_token %}
+
+                              <input type="hidden" name="gameId" value={{avaliable_game.id}}>
+                              <button type="submit">JOIN</button>
+                          </form>
+
+                          </li>
+                      {% endfor %}
+                  </ul>
+
+            </div>
+            <div class="list-group col-xs-4">
+                  <h3 class="text-center">Finished Games</h3>
+                  <ul >
+                      {% for current_finished_user_game in current_finished_user_games %}
+                          <li class="list-group-item">{{ current_finished_user_game}}
+                          <input type="hidden" value={{current_finished_user_game.id}}>
+                          <!-- Not setting up a form yet, in case it is needed (to show the finished board for example)
+                              this would be used -->
+                          <span class="badge badge-default badge-pill">{{current_finished_user_game.created_date|date:'Y/m/d'}}</span>
+                          </li>
+                      {% endfor %}
+                  </ul>
+
+            </div>
+            <div class="list-group col-xs-4">
+                  <h3 class="text-center">Not Finished Games</h3>
+                  <ul >
+                      {% for current_not_finished_user_game in current_not_finished_user_games %}
+                          <li class="list-group-item">{{ current_not_finished_user_game}}
+                              <form action="/connect4/play/" method="POST">
+                              {% csrf_token %}
+
+                              <input type="hidden" name="gameId" value={{current_not_finished_user_game.id}}>
+                              <button type="submit" class="btn btn-info
+                                 {% ifnotequal current_not_finished_user_game.status "PLAYING" %}
+                                    disabled
+                                 {% endifnotequal %}
+                               ">PLAY</button>
+                          </form>
+
+                          </li>
+                      {% endfor %}
+                  </ul>
+
+            </div>
+
+            </div>
+    </div>
+
+{% endblock %}
+<script src="{% static "game.js" %}"></script>

@@ -1,0 +1,48 @@
+{% extends "skeleton.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Connect4. Login{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <h1 class="col-lg-6 col-lg-offset-3 text-center">Login</h1>
+        <form action="/connect4/login/" method="post" class="row" id="loginForm">
+
+            <!-- Snippet taken from internet to reflect errors, if any-->
+            {% if form.errors %}
+            <div class="list-group col-xs-4 col-xs-offset-4">
+                  <ul >
+                    {% for field in form %}
+                      {% if field.errors %}
+                        {% for error in field.errors %}
+                          <li class="list-group-item list-group-item-danger">{{ error|escape }}</a></li>
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                  {% if form.non_field_errors %}
+                    {{ form.non_field_errors }}
+                  {% endif %}
+                </div>
+                {% for hidden in form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+
+                {% for field in form.visible_fields %}
+                  <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="col-xs-12 text-center">{{ field.label }}</label>
+                    {% render_field field class+="col-xs-4 col-xs-offset-4" %}
+                  </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+            <br>
+            <button type="submit" class="btn btn-primary col-xs-4 col-xs-offset-4">LOGIN</button>
+            <!-- Avoids -->
+
+        </form>
+    </div>
+
+{% endblock %}

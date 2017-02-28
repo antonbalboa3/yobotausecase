@@ -1,0 +1,44 @@
+import connect4.models as models
+from django.contrib.auth.models import User
+a = models.Game()
+p1 = User.objects.filter(username='krim')
+p2 = User.objects.filter(username='test')
+a.player1=p1[0]
+a.player2=p2[0]
+a.save()
+
+from django.contrib.auth.models import User
+a = models.Game()
+p1 = User.objects.filter(username='krim')
+p2 = User.objects.filter(username='test')
+a.player1=p1[0]
+a.player2=p2[0]
+a.save()
+
+from django.contrib.auth.models import User
+a = models.Game()
+p1 = User.objects.filter(username='krim')
+p2 = User.objects.filter(username='test')
+a.player1=p2[0]
+a.save()
+
+
+from django.contrib.auth.models import User
+a = models.Game()
+p1 = User.objects.filter(username='krim')
+p2 = User.objects.filter(username='test')
+a.player1=p1[0]
+a.player2=p2[0]
+a.status='FINISHED'
+a.save()
+
+from django.contrib.auth.models import User
+import connect4.models as models
+p1 = User.objects.filter(username='krim')[0]
+p2 = User.objects.filter(username='test')[0]
+a = models.Game.objects.filter(id=69)[0]
+a.make_move(p1,0,0)
+a.make_move(p2,0,1)
+a.make_move(p1,1,0)
+a.make_move(p2,1,1)
+a.make_move(p1,0,3)

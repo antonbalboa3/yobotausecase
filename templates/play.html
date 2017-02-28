@@ -1,0 +1,101 @@
+{% extends "skeleton.html" %}
+{% load widget_tweaks %}
+{% load static from staticfiles %}
+
+
+{% block title %}Connect4. Game List{% endblock %}
+
+{% block content %}
+
+    <div class="row col-xs-3 col-xs-offset-4">
+        <h2 class = "list-group-item-danger text-center" id="errorContainer"></h2>
+        <h1 class="text-center">Play</h1>
+
+            <div class="clearfix"></div>
+            <br>
+         <input type="hidden" id="gameId" value={{ gameId }}>
+               <input type="hidden" id="playerId" value={{ playerId }}>
+
+         <table class="table gametable">
+            <thead>
+              <tr>
+                <th class="text-center"><button class="col0 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col1 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col2 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col3 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col4 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col5 btn bnt-success"></button></th>
+                <th class="text-center"><button class="col6 btn bnt-success"></button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row5">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+
+              </tr>
+              <tr class="row4">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+              </tr>
+              <tr class="row3">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+              </tr>
+              <tr class="row2">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+              </tr>
+              <tr class="row1">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+              </tr>
+              <tr class="row0">
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+                <td class="gamecell"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="col-xs-4 col-xs-offset-4">
+            <h1>Turn:</h1>
+            <h2 id="playerTurn"></h2>
+
+          </div>
+
+    </div>
+    <div class = 'col-xs-2 col-xs-offset-1'>
+        <h2 id="lastMove"> No moves found </h2>
+
+      </div>
+{% endblock %}
